@@ -1,3 +1,5 @@
+import os
+from dotenv import load_dotenv
 import pandas as pd
 from pymongo import MongoClient
 import geopandas as gpd
@@ -5,9 +7,11 @@ import folium
 from folium.plugins import HeatMap
 from shapely.geometry import Polygon
 
-# MongoDB Atlas connection URI
-mongodb_uri = "mongodb+srv://rahman_big_data:B7O53FIMRV5tdKF7@mongodb.12spgep.mongodb.net/?retryWrites=true&w=majority&appName=mongoDB"
+load_dotenv()
 
+# MongoDB Atlas connection URI
+mongodb_uri = os.getenv("MONGODB_URI")
+print(mongodb_uri)
 # Connect to MongoDB Atlas
 client = MongoClient(mongodb_uri)
 db = client["BigDataFinalProject"]
